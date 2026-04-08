@@ -24,7 +24,7 @@ def conectar_db():
 def crear_persona(dni, nombre, apellido, direccion, telefono):
     conn = conectar_db()
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO personas (dni, nombre, apellido, direccion, telefono) VALUES (%s, %s, %s, %s, %s)",
+    cursor.execute("INSERT INTO personas2 (dni, nombre, apellido, direccion, telefono) VALUES (%s, %s, %s, %s, %s)",
                    (dni, nombre, apellido, direccion, telefono))
     conn.commit()
     conn.close()
@@ -33,7 +33,7 @@ def obtener_registros():
     conn = psycopg2.connect(
         dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST)
     cursor=conn.cursor()
-    cursor.execute("SELECT * FROM personas order by apellido")
+    cursor.execute("SELECT * FROM personas2 order by apellido")
     registros = cursor.fetchall()
     conn.close()
     return registros
@@ -63,7 +63,7 @@ def eliminar_registro(dni):
     conn = psycopg2.connect(
         dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST)
     cursor=conn.cursor()
-    cursor.execute("DELETE FROM personas WHERE dni = %s", (dni,))
+    cursor.execute("DELETE FROM personas2 WHERE dni = %s", (dni,))
     conn.commit()
     conn.close()
     return redirect(url_for('administrar'))
