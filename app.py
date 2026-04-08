@@ -15,7 +15,7 @@ DB_PASSWORD = 'dJPBn59cunXhIKGwLmkHj4lFnFetgFfU'
 def conectar_db():
     try:
         conn = psycopg2.connect(
-            dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST)
+            dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST, port=5432)
         return conn
     except psycopg2.Error as e:
         print("Error al conectar a la base de datos:", e)
